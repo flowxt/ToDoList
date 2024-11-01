@@ -1,30 +1,29 @@
 const form = document.querySelector("form");
 
-// Storage part
+// Storage
 function storeList() {
-  window.localStorage.toDoList = list.innerHTML;
+  window.localStorage.todoList = list.innerHTML;
 }
 
-function getToDos() {
-  if (window.localStorage.toDoList) {
-    list.innerHTML = window.localStorage.toDoList;
+function getTodos() {
+  if (window.localStorage.todoList) {
+    list.innerHTML = window.localStorage.todoList;
   } else {
-    list.innerHTML = `<li>Cliquez sur un toDo pour le supprimer</li>`;
+    list.innerHTML = `<li>Cliquez sur un todo pour le supprimer</li>`;
   }
 }
 
-window.addEventListener("load", getToDos);
-getToDos();
-// Add element form
+getTodos();
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  // console.log(item.value);
   list.innerHTML += `<li>${item.value}</li>`;
   item.value = "";
   storeList();
 });
 
-//remove element form
+// Remove item
 list.addEventListener("click", (e) => {
   if (e.target.classList.contains("checked")) {
     e.target.remove();
